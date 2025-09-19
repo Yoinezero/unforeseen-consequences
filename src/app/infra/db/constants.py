@@ -5,3 +5,8 @@ POSTGRES_INDEXES_NAMING_CONVENTION = {
     "fk": "%(table_name)s_%(column_0_name)s_fkey",
     "pk": "%(table_name)s_pkey",
 }
+
+DEFAULT_USER_SETTINGS = {
+    "theme": "auto",
+    "avatar": "Not set",
+}
