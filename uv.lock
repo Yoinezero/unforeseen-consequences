@@ -58,6 +58,8 @@ dependencies = [
     { name = "dependency-injector" },
     { name = "fastapi", extra = ["all"] },
     { name = "loguru" },
+    { name = "orjson" },
+    { name = "pydantic-settings" },
     { name = "sqlalchemy" },
 ]
 
@@ -72,6 +74,8 @@ requires-dist = [
     { name = "dependency-injector", specifier = ">=4.48.1" },
     { name = "fastapi", extras = ["all"], specifier = ">=0.116.2" },
     { name = "loguru", specifier = ">=0.7.3" },
+    { name = "orjson", specifier = ">=3.11.3" },
+    { name = "pydantic-settings", specifier = ">=2.10.1" },
     { name = "sqlalchemy", specifier = ">=2.0.43" },
 ]
 
