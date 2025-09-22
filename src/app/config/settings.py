@@ -2,6 +2,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from app.config.app import AppSettings
 from app.config.database import DatabaseSettings
+from app.config.logging import LoggingSettings
 from app.config.oauth_providers import ProviderSettings
 
 
@@ -15,3 +16,4 @@ class Settings(BaseSettings):
     app: AppSettings
     oauth2: ProviderSettings
     database: DatabaseSettings
+    logging: LoggingSettings

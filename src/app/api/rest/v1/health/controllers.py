@@ -9,7 +9,7 @@ from app.api.rest.v1.health.views import HealthStatus, LivenessStatus, Readiness
 from app.config.settings import Settings
 from app.containers import Container
 
-router = APIRouter(prefix="/health", tags=["Health"])
+router = APIRouter()
 
 
 @router.get(

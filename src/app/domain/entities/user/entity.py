@@ -1,8 +1,6 @@
-from datetime import datetime, timezone
-
 import uuid_utils as uuid
 
-from pydantic import EmailStr, Field
+from pydantic import UUID7, EmailStr, Field, field_validator
 
 from app.domain.entities.base import BaseEntity
 from app.domain.entities.user.constants import DEFAULT_USER_SETTINGS
@@ -15,7 +13,7 @@ class UserEntity(BaseEntity):
     It is immutable and self-validating.
     """
 
-    id: uuid.UUID = Field(default_factory=uuid.uuid7)
+    id: UUID7 = Field(default_factory=uuid.uuid7)
     email: EmailStr
     settings: dict = DEFAULT_USER_SETTINGS
 

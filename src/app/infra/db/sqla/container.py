@@ -24,7 +24,7 @@ class Database:
             url=config.dsn,
             poolclass=NullPool,
             connect_args=self.connect_args,
-            json_serializer=orjson.dumps,
+            json_serializer=lambda item: orjson.dumps(item).decode("utf8"),
             json_deserializer=orjson.loads,
             echo=config.debug,
         )

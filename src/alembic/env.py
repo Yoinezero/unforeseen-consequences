@@ -9,6 +9,7 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from app.config.settings import Settings
 from app.infra.db.sqla.base import metadata
+from app.infra.db.sqla.models import SocialProfile, User  # noqa
 
 settings = Settings()
 
