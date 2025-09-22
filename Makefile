@@ -10,7 +10,7 @@ build: ## Build the application container
 	cd docker && docker-compose build --no-cache
 
 up: ## Start all services in detached mode
-	cd docker && docker-compose up -d
+	cd docker && docker-compose up -d --force-recreate
 
 down: ## Stop and remove all containers
 	cd docker && docker-compose down
@@ -48,21 +48,21 @@ db-shell: ## Access the database container shell
 
 # Database operations
 migrate: ## Run database migrations
-	cd docker && docker-compose exec -w /app/src app python -m alembic upgrade head
+	cd docker && docker-compose exec -w /src app python -m alembic upgrade head
 
 migrate-auto: ## Generate automatic migration based on model changes
 	@read -p "Migration message: " message; \
-	cd docker && docker-compose exec -w /app/src app python -m alembic revision --autogenerate -m "$$message"
+	cd docker && docker-compose exec -w /src app python -m alembic revision --autogenerate -m "$$message"
 
 migrate-create: ## Create a new empty migration
 	@read -p "Migration message: " message; \
-	cd docker && docker-compose exec -w /app/src app python -m alembic revision -m "$$message"
+	cd docker && docker-compose exec -w /src app python -m alembic revision -m "$$message"
 
 migrate-history: ## Show migration history
-	cd docker && docker-compose exec -w /app/src app python -m alembic history
+	cd docker && docker-compose exec -w /src app python -m alembic history
 
 migrate-current: ## Show current migration version
-	cd docker && docker-compose exec -w /app/src app python -m alembic current
+	cd docker && docker-compose exec -w /src app python -m alembic current
 
 # Maintenance operations
 clean: ## Remove all containers, volumes, and images

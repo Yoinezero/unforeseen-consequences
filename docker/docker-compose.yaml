@@ -46,7 +46,6 @@ services:
       - 8.8.4.4
     volumes:
       - ../src:/src  # For development - remove in production (writable for migrations)
-      - ../.env:/app/.env:ro
 
 volumes:
   postgres_data:

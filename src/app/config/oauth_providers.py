@@ -1,11 +1,11 @@
-from pydantic_settings import BaseSettings
+from pydantic import BaseModel
 
 
-class OAuthSettings(BaseSettings):
+class OAuthSettings(BaseModel):
     client_id: str = ""
     client_secret: str = ""
 
 
-class ProviderSettings(BaseSettings):
+class ProviderSettings(BaseModel):
     # google: OAuthSettings
-    github: OAuthSettings = OAuthSettings()
+    github: OAuthSettings

@@ -1,15 +1,15 @@
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import BaseModel, ConfigDict
 
 
-class DatabaseSettings(BaseSettings):
-    model_config = SettingsConfigDict(extra="allow")
+class DatabaseSettings(BaseModel):
+    model_config = ConfigDict(extra="allow")
 
     driver: str
-    host: str
-    port: int
+    host: str | None = None
+    port: int | None = None
     database: str
-    username: str
-    password: str
+    username: str | None = None
+    password: str | None = None
 
     # pool_size: int = 5
     # max_overflow: int = 15

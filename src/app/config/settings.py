@@ -12,6 +12,6 @@ class Settings(BaseSettings):
         env_nested_delimiter="__",
     )
 
-    app: AppSettings = AppSettings()
-    oauth2: ProviderSettings = ProviderSettings()
-    database: DatabaseSettings = DatabaseSettings()
+    app: AppSettings
+    oauth2: ProviderSettings
+    database: DatabaseSettings

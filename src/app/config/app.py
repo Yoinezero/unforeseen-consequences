@@ -1,6 +1,6 @@
 from enum import Enum
 
-from pydantic_settings import BaseSettings
+from pydantic import BaseModel
 
 
 class EnvironmentEnum(str, Enum):
@@ -9,7 +9,7 @@ class EnvironmentEnum(str, Enum):
     DEV = "dev"
 
 
-class AppSettings(BaseSettings):
+class AppSettings(BaseModel):
     name: str = "Authorization app"
     environment: EnvironmentEnum = EnvironmentEnum.DEV
     debug: bool = False
