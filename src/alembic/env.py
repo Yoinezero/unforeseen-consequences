@@ -7,8 +7,8 @@ from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from src.app.config.settings import Settings
-from src.app.infra.db.base import metadata
+from app.config.settings import Settings
+from app.infra.db.sqla.base import metadata
 
 settings = Settings()
 

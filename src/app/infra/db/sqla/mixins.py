@@ -1,10 +1,11 @@
 import datetime
-import uuid
 
 import sqlalchemy as sa
 
 from sqlalchemy import Uuid, func
 from sqlalchemy.orm import Mapped, declarative_mixin, mapped_column
+
+import uuid_utils as uuid
 
 
 @declarative_mixin
@@ -14,7 +15,7 @@ class UUIDMixin:
     id: Mapped[uuid.UUID] = mapped_column(
         Uuid(as_uuid=True, native_uuid=True),
         primary_key=True,
-        default=uuid.uuid4,
+        default=uuid.uuid7,
         nullable=False,
     )
 
