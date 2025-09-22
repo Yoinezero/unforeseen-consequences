@@ -19,3 +19,8 @@ class AppSettings(BaseModel):
     secret_key: str = "secret"
     access_token_expires_minutes: int = 60
     refresh_token_expires_days: int = 30
+    
+    # cookies
+    refresh_token_cookie_name: str = "refresh_token"
+    cookie_secure: bool = False  # Set to True in production
+    cookie_samesite: str = "lax"  # Options: "strict", "lax", "none"

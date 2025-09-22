@@ -1,7 +1,7 @@
 from typing import Annotated, Literal
 
 from dependency_injector.wiring import Provide, inject
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import RedirectResponse
 from loguru import logger
 
@@ -44,6 +44,7 @@ async def auth_callback(
     """
     try:
         token = await getattr(oauth, provider).authorize_access_token(request)
+        # TODO: move logic to a dedicated service
         match provider:
             case "github":
                 resp = await oauth.github.get("user", token=token)
@@ -60,10 +61,23 @@ async def auth_callback(
             provider_id=user_data["id"],
         )
 
-        access_token = jwt.create_access_token(str(user.id))
+        access_token = jwt.create_access_token(user_id=str(user.id))
+        refresh_token = jwt.create_refresh_token(user_id=str(user.id))
 
-        redirect_url = f"{settings.app.frontend_url}/auth/callback?token={access_token}"
-        return RedirectResponse(url=redirect_url)
+        redirect_url = f"{settings.app.frontend_url}/auth/callback?access_token={access_token}"
+
+        response = RedirectResponse(url=redirect_url)
+
+        response.set_cookie(
+            key=settings.app.refresh_token_cookie_name,
+            value=refresh_token,
+            max_age=settings.app.refresh_token_expires_days * 24 * 60 * 60,
+            httponly=True,
+            secure=settings.app.cookie_secure,
+            samesite=settings.app.cookie_samesite,
+        )
+
+        return response
 
     except Exception as e:
         logger.error(f"Error during OAuth callback: {e}")
