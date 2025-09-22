@@ -13,7 +13,10 @@ class Container(containers.DeclarativeContainer):
     wiring_config = containers.WiringConfiguration(
         packages=[
             "app.api.rest",
-        ]
+        ],
+        modules=[
+            "app.infra.security.dependencies",
+        ],
     )
 
     config = providers.Singleton(Settings)
